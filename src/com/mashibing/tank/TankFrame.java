@@ -8,7 +8,7 @@ import java.awt.event.WindowEvent;
 
 public class TankFrame extends Frame{
 
-    Tank myTank = new Tank(200, 200, Dir.DOWN);
+    Tank myTank = new Tank(200, 200, Dir.DOWN, this);
     Bullet b = new Bullet(300,300,Dir.DOWN);
 
     static final int GAME_WIDTH = 800;
@@ -85,6 +85,7 @@ public class TankFrame extends Frame{
         public void keyReleased(KeyEvent e) {
             int key = e.getKeyCode();
             switch (key) {
+                //move
                 case KeyEvent.VK_LEFT:
                     bl = false;
                     break;
@@ -97,6 +98,11 @@ public class TankFrame extends Frame{
                 case KeyEvent.VK_DOWN:
                     bd = false;
                     break;
+                //fire
+                case KeyEvent.VK_CONTROL:
+                    myTank.fire();
+                    break;
+
                 default:
                     break;
             }
