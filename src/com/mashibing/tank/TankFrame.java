@@ -11,8 +11,11 @@ public class TankFrame extends Frame{
     Tank myTank = new Tank(200, 200, Dir.DOWN);
     Bullet b = new Bullet(300,300,Dir.DOWN);
 
+    static final int GAME_WIDTH = 800;
+    static final int GAME_HEIGHT = 600;
+
     public TankFrame() {
-        setSize(800, 600);
+        setSize(GAME_WIDTH, GAME_HEIGHT);
         setResizable(false);
         setTitle("Tank War");
         setVisible(true);
@@ -25,6 +28,21 @@ public class TankFrame extends Frame{
                 System.exit(0);
             }
         });
+    }
+
+    Image offScreenImage = null;
+    @Override
+    public void update(Graphics g) {
+        if(offScreenImage == null) {
+            offScreenImage = this.createImage(GAME_WIDTH, GAME_HEIGHT);
+        }
+        Graphics goffScreen = offScreenImage.getGraphics();
+        Color c = goffScreen.getColor();
+        goffScreen.setColor(Color.BLACK);
+        goffScreen.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+        goffScreen.setColor(c);
+        paint(goffScreen);
+        g.drawImage(offScreenImage, 0, 0, null);
     }
 
     @Override
