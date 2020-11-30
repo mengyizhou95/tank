@@ -8,8 +8,8 @@ public class Bullet {
     private  boolean live = true;
     private TankFrame tf;
     private static final int SPEED = 10;
-    private static final int WIDTH = 5;
-    private static final int HEIGHT = 5;
+    public static final int WIDTH = ResourceManager.bulletD.getWidth();
+    public static final int HEIGHT = ResourceManager.bulletD.getHeight();
 
     //methods
     public Bullet(int x, int y, Dir dir, TankFrame tf) {
