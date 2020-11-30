@@ -11,6 +11,7 @@ public class Bullet {
     private static final int WIDTH = 5;
     private static final int HEIGHT = 5;
 
+    //methods
     public Bullet(int x, int y, Dir dir, TankFrame tf) {
         super();
         this.x = x;
@@ -23,11 +24,20 @@ public class Bullet {
         if(!live) {
             tf.bullets.remove(this);
         }
-        Color c = g.getColor();
-        g.setColor(Color.RED);
-        g.fillOval(x, y, WIDTH, HEIGHT);
-        g.setColor(c);
-
+        switch (dir) {
+            case LEFT:
+                g.drawImage(ResourceManager.bulletL, x, y, null);
+                break;
+            case RIGHT:
+                g.drawImage(ResourceManager.bulletR, x, y, null);
+                break;
+            case UP:
+                g.drawImage(ResourceManager.bulletU, x, y, null);
+                break;
+            case DOWN:
+                g.drawImage(ResourceManager.bulletD, x, y, null);
+                break;
+        }
         move();
     }
 

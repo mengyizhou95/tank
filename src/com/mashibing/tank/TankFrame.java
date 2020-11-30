@@ -34,6 +34,7 @@ public class TankFrame extends Frame{
         });
     }
 
+    //override update to solve the flicker on screen
     Image offScreenImage = null;
     @Override
     public void update(Graphics g) {
