@@ -5,7 +5,7 @@ import java.awt.*;
 public class Bullet {
     private int x, y;
     private Dir dir;
-    private  boolean live = true;
+    private  boolean living = true;
     private TankFrame tf;
     private static final int SPEED = 10;
     public static final int WIDTH = ResourceManager.bulletD.getWidth();
@@ -21,7 +21,7 @@ public class Bullet {
     }
 
     public void paint(Graphics g) {
-        if(!live) {
+        if(!living) {
             tf.bullets.remove(this);
         }
         switch (dir) {
@@ -57,7 +57,20 @@ public class Bullet {
                 break;
         }
         if(x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) {
-            live = false;
+            living = false;
         }
+    }
+
+    public void collideWith(Tank tank) {
+        Rectangle rectBullet = new Rectangle(this.x, this.y, WIDTH, HEIGHT);
+        Rectangle rectTank = new Rectangle(tank.getX(), tank.getY(), tank.WIDTH, tank.HEIGHT);
+        if(rectBullet.intersects(rectTank)) {
+            tank.die();
+            this.die();
+        }
+    }
+
+    private void die() {
+        this.living = false;
     }
 }

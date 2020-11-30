@@ -10,6 +10,7 @@ public class Tank {
     public static final int HEIGHT = ResourceManager.tankD.getHeight();
 
     private boolean moving = false;
+    private boolean living = true;
 
     private TankFrame tf;
 
@@ -23,6 +24,10 @@ public class Tank {
 
     //methods
     public void paint(Graphics g) {
+        if(!living) {
+            tf.tanks.remove(this);
+            return;
+        }
         switch (dir) {
             case LEFT:
                 g.drawImage(ResourceManager.tankL, x, y, null);
@@ -101,5 +106,9 @@ public class Tank {
 
     public void setMoving(boolean moving) {
         this.moving = moving;
+    }
+
+    public void die() {
+        this.living = false;
     }
 }
