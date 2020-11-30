@@ -6,7 +6,7 @@ public class Main {
 
         //init enemy tanks
         for(int i = 0; i < 5; i++) {
-            tf.tanks.add(new Tank(50 + i * 60, 200, Dir.DOWN, tf));
+            tf.tanks.add(new Tank(50 + i * 60, 200, Dir.DOWN, tf, Group.BAD));
         }
 
         while(true) {

@@ -5,6 +5,7 @@ import java.awt.*;
 public class Bullet {
     private int x, y;
     private Dir dir;
+    private Group group = Group.BAD;
     private  boolean living = true;
     private TankFrame tf;
     private static final int SPEED = 10;
@@ -12,12 +13,13 @@ public class Bullet {
     public static final int HEIGHT = ResourceManager.bulletD.getHeight();
 
     //methods
-    public Bullet(int x, int y, Dir dir, TankFrame tf) {
+    public Bullet(int x, int y, Dir dir, TankFrame tf, Group group) {
         super();
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.tf = tf;
+        this.group = group;
     }
 
     public void paint(Graphics g) {
@@ -62,6 +64,10 @@ public class Bullet {
     }
 
     public void collideWith(Tank tank) {
+        if(this.group == tank.getGroup()) {
+            return;
+        }
+        //TODO: uee only one Rec to record the position of bullets
         Rectangle rectBullet = new Rectangle(this.x, this.y, WIDTH, HEIGHT);
         Rectangle rectTank = new Rectangle(tank.getX(), tank.getY(), tank.WIDTH, tank.HEIGHT);
         if(rectBullet.intersects(rectTank)) {
