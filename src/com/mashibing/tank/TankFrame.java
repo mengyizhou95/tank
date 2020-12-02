@@ -13,9 +13,10 @@ public class TankFrame extends Frame{
     Tank myTank = new Tank(200, 400, Dir.DOWN, this, Group.GOOD);
     List<Bullet> bullets = new ArrayList<>();
     List<Tank> tanks = new ArrayList<>();
+    List<Explosion> explosions = new ArrayList<>();
 
-    static final int GAME_WIDTH = 800;
-    static final int GAME_HEIGHT = 600;
+    static final int GAME_WIDTH = 1080;
+    static final int GAME_HEIGHT = 960;
 
     public TankFrame() {
         setSize(GAME_WIDTH, GAME_HEIGHT);
@@ -61,6 +62,11 @@ public class TankFrame extends Frame{
         g.setColor(Color.WHITE);
         g.drawString("Number of enemies: " + tanks.size(), 10, 80);
         g.setColor(c);
+
+        c = g.getColor();
+        g.setColor(Color.WHITE);
+        g.drawString("Number of explosions: " + explosions.size(), 10, 100);
+        g.setColor(c);
         //draw tank
         myTank.paint(g);
         //draw bullets
@@ -70,6 +76,10 @@ public class TankFrame extends Frame{
         //draw enemies
         for(int i = 0; i < tanks.size(); i++) {
             tanks.get(i).paint(g);
+        }
+        //explosion
+        for(int i = 0; i < explosions.size(); i++) {
+            explosions.get(i).paint(g);
         }
         //if tanks collide with bullets, remove the tanks
         for(int i = 0; i < bullets.size(); i++) {

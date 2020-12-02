@@ -8,7 +8,7 @@ public class Explosion {
 
     private int x, y;
 
-    private  boolean living = true;
+//    private  boolean living = true;
     TankFrame tf = null;
 
     private int step = 0;
@@ -22,7 +22,7 @@ public class Explosion {
     public void paint(Graphics g) {
         g.drawImage(ResourceManager.explosion[step++], x, y, null);
         if(step >= ResourceManager.explosion.length) {
-            step = 0;
+            tf.explosions.remove(this);
         }
     }
 }
