@@ -12,6 +12,8 @@ public class Bullet {
     public static final int WIDTH = ResourceManager.bulletD.getWidth();
     public static final int HEIGHT = ResourceManager.bulletD.getHeight();
 
+    Rectangle rect = new Rectangle();
+
     //methods
     public Bullet(int x, int y, Dir dir, TankFrame tf, Group group) {
         super();
@@ -20,6 +22,11 @@ public class Bullet {
         this.dir = dir;
         this.tf = tf;
         this.group = group;
+
+        rect.x = this.x;
+        rect.y = this.y;
+        rect.width = WIDTH;
+        rect.height = HEIGHT;
     }
 
     public void paint(Graphics g) {
@@ -58,19 +65,16 @@ public class Bullet {
                 y += SPEED;
                 break;
         }
-        if(x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) {
-            living = false;
-        }
+        //update rect
+        rect.x = this.x;
+        rect.y = this.y;
     }
 
     public void collideWith(Tank tank) {
         if(this.group == tank.getGroup()) {
             return;
         }
-        //TODO: uee only one Rec to record the position of bullets
-        Rectangle rectBullet = new Rectangle(this.x, this.y, WIDTH, HEIGHT);
-        Rectangle rectTank = new Rectangle(tank.getX(), tank.getY(), tank.WIDTH, tank.HEIGHT);
-        if(rectBullet.intersects(rectTank)) {
+        if(rect.intersects(tank.rect)) {
             tank.die();
             this.die();
             int ex = tank.getX() + Tank.WIDTH/2 - Explosion.WIDTH/2;

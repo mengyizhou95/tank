@@ -14,6 +14,7 @@ public class Tank {
     private boolean moving = true;
     private boolean living = true;
 
+    public Rectangle rect = new Rectangle();
 
     private Random random = new Random();
     private TankFrame tf;
@@ -25,6 +26,11 @@ public class Tank {
         this.dir = dir;
         this.tf = tf;
         this.group = group;
+
+        rect.x = this.x;
+        rect.y = this.y;
+        rect.width = WIDTH;
+        rect.height = HEIGHT;
     }
 
     //methods
@@ -76,6 +82,10 @@ public class Tank {
             randomDir();
         }
         boundCheck();
+
+        //update rect
+        rect.x = this.x;
+        rect.y = this.y;
     }
 
     private void boundCheck() {
