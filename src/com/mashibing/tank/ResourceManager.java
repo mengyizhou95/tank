@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class ResourceManager {
+    public static BufferedImage goodTankL, goodTankU, goodTankR, goodTankD;
+    public static BufferedImage badTankL, badTankU, badTankR, badTankD;
     public static BufferedImage tankL, tankU, tankR, tankD;
     public static BufferedImage bulletL, bulletU, bulletR, bulletD;
     public static BufferedImage[] explosion = new BufferedImage[16];

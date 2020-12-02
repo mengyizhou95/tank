@@ -73,7 +73,9 @@ public class Bullet {
         if(rectBullet.intersects(rectTank)) {
             tank.die();
             this.die();
-            tf.explosions.add(new Explosion(x, y, tf));
+            int ex = tank.getX() + Tank.WIDTH/2 - Explosion.WIDTH/2;
+            int ey = tank.getY() + Tank.HEIGHT/2 - Explosion.HEIGHT/2;
+            tf.explosions.add(new Explosion(ex, ey, tf));
         }
     }
 
