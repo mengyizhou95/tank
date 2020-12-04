@@ -1,4 +1,4 @@
-package com.mashibing.tank;
+package com.ymeng.tank.manager;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -6,6 +6,15 @@ import java.io.File;
 import java.io.IOException;
 
 public class ResourceManager {
+
+    private static final ResourceManager Instance = new ResourceManager();
+
+    private ResourceManager() {}
+
+    public static ResourceManager getInstance() {
+        return Instance;
+    }
+
     public static BufferedImage goodTankL, goodTankU, goodTankR, goodTankD;
     public static BufferedImage badTankL, badTankU, badTankR, badTankD;
     public static BufferedImage tankL, tankU, tankR, tankD;

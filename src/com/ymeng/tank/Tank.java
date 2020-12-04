@@ -1,4 +1,8 @@
-package com.mashibing.tank;
+package com.ymeng.tank;
+
+import com.ymeng.tank.fireStrategy.DefaultFireStrategy;
+import com.ymeng.tank.fireStrategy.FireStrategy;
+import com.ymeng.tank.manager.ResourceManager;
 
 import java.awt.*;
 import java.util.Random;
@@ -76,7 +80,7 @@ public class Tank {
         }
 
         if(this.group == Group.BAD && random.nextInt(100) > 95) {
-            this.fire();
+            this.fire(DefaultFireStrategy.getInstance());
         }
         if(this.group == Group.BAD && random.nextInt(100) > 95) {
             randomDir();
@@ -107,10 +111,8 @@ public class Tank {
         this.dir = Dir.values()[random.nextInt(4)];
     }
 
-    public void fire() {
-        int bx = this.x + Tank.WIDTH/2 - Bullet.WIDTH/2;
-        int by = this.y + Tank.HEIGHT/2 - Bullet.HEIGHT/2;
-        tf.bullets.add(new Bullet(bx, by, this.dir, this.tf, this.group));
+    public void fire(FireStrategy fs) {
+        fs.fire(this);
     }
 
     public void die() {
@@ -162,5 +164,13 @@ public class Tank {
 
     public void setGroup(Group group) {
         this.group = group;
+    }
+
+    public TankFrame getTf() {
+        return tf;
+    }
+
+    public void setTf(TankFrame tf) {
+        this.tf = tf;
     }
 }

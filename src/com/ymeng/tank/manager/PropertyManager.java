@@ -1,10 +1,19 @@
-package com.mashibing.tank;
+package com.ymeng.tank.manager;
 
 
 import java.io.IOException;
 import java.util.Properties;
 
 public class PropertyManager {
+
+    private static final PropertyManager Instance = new PropertyManager();
+
+    private PropertyManager() {}
+
+    public static PropertyManager getInstance() {
+        return Instance;
+    }
+
     static Properties props = new Properties();
     static {
         try {

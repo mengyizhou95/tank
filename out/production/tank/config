@@ -1,2 +1,4 @@
 #tanks count at init
 initialTankCount=10
+
+#fireStrategy

@@ -1,4 +1,6 @@
-package com.mashibing.tank;
+package com.ymeng.tank;
+
+import com.ymeng.tank.fireStrategy.DefaultFireStrategy;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -138,7 +140,7 @@ public class TankFrame extends Frame{
                     break;
                 //fire
                 case KeyEvent.VK_SPACE:
-                    myTank.fire();
+                    myTank.fire(DefaultFireStrategy.getInstance());
                     break;
 
                 default:

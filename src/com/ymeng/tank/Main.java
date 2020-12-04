@@ -1,4 +1,6 @@
-package com.mashibing.tank;
+package com.ymeng.tank;
+
+import com.ymeng.tank.manager.PropertyManager;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException{
