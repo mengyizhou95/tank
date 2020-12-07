@@ -7,12 +7,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.List;
 
 public class TankFrame extends Frame{
 
-    GameMode gm = new GameMode();
+    GameModel gm = GameModel.getInstance();
 
     static final int GAME_WIDTH = 1080;
     static final int GAME_HEIGHT = 960;

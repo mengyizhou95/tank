@@ -4,20 +4,20 @@ import com.ymeng.tank.manager.ResourceManager;
 
 import java.awt.*;
 
-public class Bullet {
+public class Bullet extends GameObject{
     private int x, y;
     private Dir dir;
     private Group group = Group.BAD;
     private  boolean living = true;
-    private GameMode gm;
+    private GameModel gm;
     private static final int SPEED = 10;
     public static final int WIDTH = ResourceManager.bulletD.getWidth();
     public static final int HEIGHT = ResourceManager.bulletD.getHeight();
 
-    Rectangle rect = new Rectangle();
+    public Rectangle rect = new Rectangle();
 
     //methods
-    public Bullet(int x, int y, Dir dir, GameMode gm, Group group) {
+    public Bullet(int x, int y, Dir dir, GameModel gm, Group group) {
         super();
         this.x = x;
         this.y = y;
@@ -30,12 +30,12 @@ public class Bullet {
         rect.width = WIDTH;
         rect.height = HEIGHT;
 
-        gm.bullets.add(this);
+        gm.add(this);
     }
 
     public void paint(Graphics g) {
         if(!living) {
-            gm.bullets.remove(this);
+            gm.remove(this);
         }
         switch (dir) {
             case LEFT:
@@ -83,11 +83,19 @@ public class Bullet {
             this.die();
             int ex = tank.getX() + Tank.WIDTH/2 - Explosion.WIDTH/2;
             int ey = tank.getY() + Tank.HEIGHT/2 - Explosion.HEIGHT/2;
-            gm.explosions.add(new Explosion(ex, ey, gm));
+            gm.add(new Explosion(ex, ey, gm));
         }
     }
 
-    private void die() {
+    public void die() {
         this.living = false;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 }

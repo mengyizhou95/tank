@@ -4,7 +4,7 @@ import com.ymeng.tank.manager.ResourceManager;
 
 import java.awt.*;
 
-public class Explosion {
+public class Explosion extends GameObject{
     public  static int WIDTH = ResourceManager.explosion[0].getWidth();
     public  static int HEIGHT = ResourceManager.explosion[0].getHeight();
 
@@ -12,11 +12,11 @@ public class Explosion {
 
 //    private  boolean living = true;
     TankFrame tf = null;
-    private GameMode gm;
+    private GameModel gm;
 
     private int step = 0;
 
-    public Explosion(int x, int y, GameMode gm) {
+    public Explosion(int x, int y, GameModel gm) {
         this.x = x;
         this.y = y;
         this.gm = gm;
@@ -25,7 +25,7 @@ public class Explosion {
     public void paint(Graphics g) {
         g.drawImage(ResourceManager.explosion[step++], x, y, null);
         if(step >= ResourceManager.explosion.length) {
-            gm.explosions.remove(this);
+            gm.remove(this);
         }
     }
 }

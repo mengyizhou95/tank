@@ -7,8 +7,9 @@ import com.ymeng.tank.manager.ResourceManager;
 import java.awt.*;
 import java.util.Random;
 
-public class Tank {
+public class Tank extends GameObject{
     private int x, y;
+    private int prevX, prevY;
     private Dir dir = Dir.DOWN;
     private Group group = Group.BAD;
     private static final int SPEED = 5;
@@ -22,9 +23,9 @@ public class Tank {
 
     private Random random = new Random();
     private TankFrame tf;
-    public GameMode gm;
+    public GameModel gm;
 
-    public Tank(int x, int y, Dir dir, GameMode gm, Group group) {
+    public Tank(int x, int y, Dir dir, GameModel gm, Group group) {
         super();
         this.x = x;
         this.y = y;
@@ -41,7 +42,7 @@ public class Tank {
     //methods
     public void paint(Graphics g) {
         if(!living) {
-            gm.tanks.remove(this);
+            gm.remove(this);
             return;
         }
         switch (dir) {
@@ -62,6 +63,9 @@ public class Tank {
     }
 
     private void move() {
+        prevX = x;
+        prevY = y;
+
         if(!moving) {
             return;
         }
@@ -93,6 +97,11 @@ public class Tank {
         rect.y = this.y;
     }
 
+    public void comeBack() {
+        x = prevX;
+        y = prevY;
+    }
+
     private void boundCheck() {
         if(this.x < 0) {
             x = 0;
@@ -120,7 +129,9 @@ public class Tank {
         this.living = false;
     }
 
-
+    public void stop() {
+        this.moving = false;
+    }
 
     //getters & setters
     public int getX() {

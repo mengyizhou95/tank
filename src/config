@@ -2,3 +2,6 @@
 initialTankCount=10
 
 #fireStrategy
+
+#colliders
+colliders=com.ymeng.tank.cor.BulletTankCollider
