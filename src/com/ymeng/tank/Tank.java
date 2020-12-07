@@ -22,13 +22,14 @@ public class Tank {
 
     private Random random = new Random();
     private TankFrame tf;
+    public GameMode gm;
 
-    public Tank(int x, int y, Dir dir, TankFrame tf, Group group) {
+    public Tank(int x, int y, Dir dir, GameMode gm, Group group) {
         super();
         this.x = x;
         this.y = y;
         this.dir = dir;
-        this.tf = tf;
+        this.gm = gm;
         this.group = group;
 
         rect.x = this.x;
@@ -40,7 +41,7 @@ public class Tank {
     //methods
     public void paint(Graphics g) {
         if(!living) {
-            tf.tanks.remove(this);
+            gm.tanks.remove(this);
             return;
         }
         switch (dir) {

@@ -9,7 +9,7 @@ public class Bullet {
     private Dir dir;
     private Group group = Group.BAD;
     private  boolean living = true;
-    private TankFrame tf;
+    private GameMode gm;
     private static final int SPEED = 10;
     public static final int WIDTH = ResourceManager.bulletD.getWidth();
     public static final int HEIGHT = ResourceManager.bulletD.getHeight();
@@ -17,12 +17,12 @@ public class Bullet {
     Rectangle rect = new Rectangle();
 
     //methods
-    public Bullet(int x, int y, Dir dir, TankFrame tf, Group group) {
+    public Bullet(int x, int y, Dir dir, GameMode gm, Group group) {
         super();
         this.x = x;
         this.y = y;
         this.dir = dir;
-        this.tf = tf;
+        this.gm = gm;
         this.group = group;
 
         rect.x = this.x;
@@ -30,12 +30,12 @@ public class Bullet {
         rect.width = WIDTH;
         rect.height = HEIGHT;
 
-        tf.bullets.add(this);
+        gm.bullets.add(this);
     }
 
     public void paint(Graphics g) {
         if(!living) {
-            tf.bullets.remove(this);
+            gm.bullets.remove(this);
         }
         switch (dir) {
             case LEFT:
@@ -83,7 +83,7 @@ public class Bullet {
             this.die();
             int ex = tank.getX() + Tank.WIDTH/2 - Explosion.WIDTH/2;
             int ey = tank.getY() + Tank.HEIGHT/2 - Explosion.HEIGHT/2;
-            tf.explosions.add(new Explosion(ex, ey, tf));
+            gm.explosions.add(new Explosion(ex, ey, gm));
         }
     }
 

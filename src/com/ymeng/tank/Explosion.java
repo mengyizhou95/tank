@@ -12,19 +12,20 @@ public class Explosion {
 
 //    private  boolean living = true;
     TankFrame tf = null;
+    private GameMode gm;
 
     private int step = 0;
 
-    public Explosion(int x, int y, TankFrame tf) {
+    public Explosion(int x, int y, GameMode gm) {
         this.x = x;
         this.y = y;
-        this.tf = tf;
+        this.gm = gm;
     }
 
     public void paint(Graphics g) {
         g.drawImage(ResourceManager.explosion[step++], x, y, null);
         if(step >= ResourceManager.explosion.length) {
-            tf.explosions.remove(this);
+            gm.explosions.remove(this);
         }
     }
 }

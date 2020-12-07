@@ -20,7 +20,7 @@ public class FourDirFireStrategy implements FireStrategy{
 
         Dir[] dirs = Dir.values();
         for (Dir dir: dirs) {
-            new Bullet(bx, by, dir, tank.getTf(), tank.getGroup());
+            new Bullet(bx, by, dir, tank.gm, tank.getGroup());
         }
     }
 }
